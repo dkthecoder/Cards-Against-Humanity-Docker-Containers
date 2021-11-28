@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <div class="mt-4 row align-items-md-stretch">
+    <div class="col-md-6">
+      <div class="h-100 p-5 text-dark bg-light rounded-3">
+        <h2>White Cards</h2>
+        <p>Wherever these is a gap, its time to fill the crack; White cards allow you to shine, they're used to fill in the blank spaces of the black cards.</p>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-light border rounded-3 text-dark">
+        <h2>Add a white card</h2>
+
+        <form method="POST" , action="">
+          {{ form.hidden_tag()}}
+          <fieldset class="form-group">
+            <div class="form-group">
+              {{ form.card_body(class="form-control") }}
+            </div>
+          </fieldset>
+
+          <div class="form-group pt-3">
+            {{ form.submit(class="btn btn-outline-dark") }}
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <div class="mt-4 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5 p-lg-4 mx-auto my-5 text-dark">
+
+      <h2>Current white cards in deck:</h2>
+      <div class="table-responsive">
+        <table class="table table-light table-striped table-hover table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Contents</th>
+              <th scope="col" class= "text-end"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            
+            {% for white_card in white_cards %}
+            <tr>
+              <td>{{ white_card[0] }}</td>
+              <td class= "text-end"><a type="button" class="btn btn-danger" href="{{ url_for('delete_whitecard', index = loop.index0) }}">Delete</a></td>
+            </tr>
+            {% endfor %}
+
+          </tbody>
+
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+</main>
+
+{% endblock %}

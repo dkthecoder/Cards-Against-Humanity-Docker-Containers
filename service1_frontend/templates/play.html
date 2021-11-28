@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+<main>
+
+  <div class="row p-4 p-md-5 mb-4 text-white bg-dark">
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h2 class="mb-0 display-4 fst-italic">Black Card:</h2>
+          <h2 class="card-text mb-auto">{{ blackcard[0] }}</h2>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h4 class="mb-0 fst-italic">Shuffle Game</h4>
+          <p class="card-text mb-auto">Type a word in and shuffle the game:</p>
+
+          <form method="POST" , action="">
+            {{ form.hidden_tag()}}
+            <fieldset class="form-group">
+              <div class="form-group">
+                {{ form.word(class="form-control") }}
+              </div>
+            </fieldset>
+
+            <div class="form-group pt-3">
+              {{ form.submit(class="btn btn-outline-light") }}
+              <a class="btn btn-outline-light" href="{{ url_for('play', given_word = 'feeling_lucky_punk') }}">Feeling Lucky Punk!</a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% for card1, card2 in whitecards %}
+
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0 fst-italic">{{ card1[0] }}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <h3 class="mb-0 fst-italic">{{ card2[0] }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+
+
+</main>
+
+{% endblock %}
