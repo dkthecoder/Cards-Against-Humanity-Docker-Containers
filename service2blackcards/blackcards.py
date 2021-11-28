@@ -1,4 +1,9 @@
 import pandas as pd
+from flask import Flask, request, Response
+
+app = Flask(__name__)
+app.config.update(DEBUG=True)
+
 
 print("importing black cards")
 df = pd.read_csv (r'data\CAH - Black Cards.csv', header=None)
@@ -23,3 +28,7 @@ def delete_card(card_id):
 #add card
 def add_card(card):
     df.loc[len(df)] = card
+
+
+if __name__ == '__main__':
+    app.run(port = 5000, host = '0.0.0.0')
