@@ -2,10 +2,6 @@ from flask import Flask, render_template, url_for, redirect, flash
 from forms import AddBlackCard, AddWhiteCard, LetsPlay
 import requests
 
-import blackcards, whitecards, magicmaker
-
-
-
 app = Flask(__name__)
 
 
@@ -29,8 +25,10 @@ def index():
 @app.route('/play/<given_word>', methods=['POST', 'GET'])
 def play(given_word):
     form = LetsPlay()
-    num_of_bc = blackcards.length()
-    num_of_wc = whitecards.length()
+    num_of_bc = requests.get('http://cah_blackcards-api:5000/get_bc_length')
+    num_of_wc = requests.get('http://cah_whitecards-api:5000/get_wc_length')
+    #num_of_bc = blackcards.length()
+    #num_of_wc = whitecards.length()
 
     if given_word == "feeling_lucky_punk":
         bc = magicmaker.random_number_generator(0, num_of_bc, 1)

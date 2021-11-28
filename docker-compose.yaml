@@ -2,7 +2,7 @@ version: "3.8"
 services:
   nginx:
     container_name: nginx
-    image: nginx:latest
+    image: nginx:alpine
     ports:
       - target: 80
         published: 80
@@ -13,20 +13,17 @@ services:
         target: /etc/nginx/nginx.conf
   frontend:
     container_name: frontend
-    image: dkthecoder/service1frontend:latest
+    image: service1frontend:latest
     build: ./service1frontend
-
   blackcards:
     container_name: blackcards
-    image: dkthecoder/service2blackcards:latest
+    image: service2blackcards:latest
     build: ./service2blackcards
-
   whitecards:
     container_name: whitecards
-    image: dkthecoder/service3whitecards:latest
+    image: service3whitecards:latest
     build: ./service3whitecards
-
   magicmaker:
     container_name: magicmaker
-    image: dkthecoder/service4magicmaker:latest
+    image: service4magicmaker:latest
     build: ./service4magicmaker
