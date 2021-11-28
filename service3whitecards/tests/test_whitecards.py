@@ -1,7 +1,8 @@
 import requests_mock
 import pytest
 from flask import url_for
-from service1frontend import app
+from service2blackcards import app
+from unittest.mock import patch
 
 
 def create_app():
@@ -9,22 +10,25 @@ def create_app():
     return app
 
 
-def test_home_repsonce(self):
-    response = self.client.get(url_for('index'))
+def test_length(self):
+    response = self.client.get(url_for('get_wc_length'))
     self.assertEqual(response.status_code, 200)
 
-def test_play_repsonce(self):
-    response = self.client.get(url_for('play'))
+def test_read_all(self):
+    response = self.client.get(url_for('read_all_wc'))
     self.assertEqual(response.status_code, 200)
 
-def test_home_repsonce(self):
-    response = self.client.get(url_for('rules'))
+#fix this test
+def test_retrieve_card(self):
+    response = self.client.get(url_for('retrieve_wc'))
     self.assertEqual(response.status_code, 200)
 
-def test_home_repsonce(self):
-    response = self.client.get(url_for('black_cards'))
+#fix this test
+def test_delete_card(self):
+    response = self.client.get(url_for('delete_wc'))
     self.assertEqual(response.status_code, 200)
 
-def test_home_repsonce(self):
-    response = self.client.get(url_for('white_cards'))
+#fix this test
+def test_add_card(self):
+    response = self.client.get(url_for('add_wc'))
     self.assertEqual(response.status_code, 200)

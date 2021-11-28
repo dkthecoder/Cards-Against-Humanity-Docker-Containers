@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+  frontend:
+    container_name: frontend
+    image: dkthecoder/service1frontend:latest
+    build: ./service1frontend
+
+  blackcards:
+    container_name: blackcards
+    image: dkthecoder/service2blackcards:latest
+    build: ./service2blackcards
+
+  whitecards:
+    container_name: whitecards
+    image: dkthecoder/service3whitecards:latest
+    build: ./service3whitecards
+
+  magicmaker:
+    container_name: magicmaker
+    image: dkthecoder/service4magicmaker:latest
+    build: ./service4magicmaker
