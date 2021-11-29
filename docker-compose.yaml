@@ -1,20 +1,24 @@
 version: "3.8"
 services:
-  nginx:
-    container_name: nginx
-    image: nginx:alpine
-    ports:
-      - target: 80
-        published: 80
-        protocol: tcp
-    volumes:
-      - type: bind
-        source: ./nginx.conf
-        target: /etc/nginx/nginx.conf
+  #nginx:
+   # container_name: nginx
+    #image: nginx:alpine
+    #ports:
+     # - target: 80
+      #  published: 80
+       # protocol: tcp
+    #volumes:
+     # - type: bind
+      #  source: ./nginx.conf
+       # target: /etc/nginx/nginx.conf
   frontend:
     container_name: frontend
     image: service1frontend:latest
     build: ./service1frontend
+    #temp
+    ports:
+      - target: 5000
+        published: 5000
   blackcards:
     container_name: blackcards
     image: service2blackcards:latest
