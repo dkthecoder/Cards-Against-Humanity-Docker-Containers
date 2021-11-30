@@ -19,7 +19,7 @@ def get_bc_length():
 
 #read all
 #NEED TO CHECK RETURN OF LIST
-@app.route('/read_all_bc', methods=['GET'])
+@app.route('/read_all', methods=['GET'])
 def read_all_bc():
     event_name = df.values.tolist()
     return Response(json.dumps(event_name), mimetype='application/json')
@@ -47,4 +47,4 @@ def add_bc(card):
 
 
 if __name__ == '__main__':
-    app.run(port = 5000, host = '0.0.0.0')
+    app.run(port = 5001, host = '0.0.0.0')
