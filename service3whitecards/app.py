@@ -19,7 +19,7 @@ def get_wc_length():
 
 #read all
 #NEED TO CHECK RETURN OF LIST
-@app.route('/read_all_wc', methods=['GET'])
+@app.route('/read_all', methods=['GET'])
 def read_all_wc():
     event_name = df.values.tolist()
     return Response(json.dumps(event_name), mimetype='application/json')
