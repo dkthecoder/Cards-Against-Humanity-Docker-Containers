@@ -32,12 +32,12 @@ def play(given_word):
     #num_of_wc = whitecards.length()
 
     if given_word == "feeling_lucky_punk":
-        bc = requests.get('http://magicmaker:5003/random_number_generator/0/' + num_of_bc + '/1')
-        wc = requests.get('http://magicmaker:5003/random_number_generator/0/' + num_of_bc + '/10')
+        bc = requests.get('http://magicmaker:5003/random_number_generator/0/' + num_of_bc.text + '/1')
+        wc = requests.get('http://magicmaker:5003/random_number_generator/0/' + num_of_bc.text + '/10')
         #bc = magicmaker.random_number_generator(0, num_of_bc, 1)
         #wc = magicmaker.random_number_generator(0, num_of_wc, 10)
 
-        bc_return = requests.get('http://blackcards:5001/retrieve_bc/' + bc[0])
+        bc_return = requests.get('http://blackcards:5001/retrieve_bc/' + str(bc[0]))
         #bc_return = blackcards.retrieve_card(bc[0])
         wc_return = []
 
@@ -46,7 +46,7 @@ def play(given_word):
             temp = []
             for j in range(2):
 
-                responce_return = requests.get('http://whitecards:5002/retrieve_wc/' + wc[counter])
+                responce_return = requests.get('http://whitecards:5002/retrieve_wc/' + str(wc[counter]))
                 temp.append(responce_return)
                 #temp.append(whitecards.retrieve_card(wc[counter]))
 
@@ -55,12 +55,12 @@ def play(given_word):
         return render_template("play.html", title="play", form=form, blackcard=bc_return, whitecards=wc_return)
 
     elif form.validate_on_submit():
-        bc = requests.get('http://magicmaker:5003/random_number_generator/0/' + num_of_bc + '/1/' + form.word.data)
-        wc = requests.get('http://magicmaker:5003/random_number_generator/0/' + num_of_bc + '/10' + form.word.data)
+        bc = requests.get('http://magicmaker:5003/random_number_generator/0/' + num_of_bc.text + '/1/' + form.word.data.text)
+        wc = requests.get('http://magicmaker:5003/random_number_generator/0/' + num_of_bc.text + '/10/' + form.word.data.text)
         #bc = magicmaker.rand_numbers_from_word(0, num_of_bc, 1, form.word.data)
         #wc = magicmaker.rand_numbers_from_word(0, num_of_wc, 10, form.word.data)
 
-        bc_return = requests.get('http://blackcards:5001/retrieve_bc/' + bc[0])
+        bc_return = requests.get('http://blackcards:5001/retrieve_bc/' + str(bc[0]))
         #bc_return = blackcards.retrieve_card(bc[0])
         wc_return = []
 
@@ -69,7 +69,7 @@ def play(given_word):
             temp = []
             for j in range(2):
 
-                responce_return = requests.get('http://whitecards:5002/retrieve_wc/' + wc[counter])
+                responce_return = requests.get('http://whitecards:5002/retrieve_wc/' + str(wc[counter]))
                 temp.append(responce_return)
                 #temp.append(whitecards.retrieve_card(wc[counter]))
                 
@@ -84,7 +84,7 @@ def play(given_word):
 #deletes black card
 @app.route("/delete_bc/<index>", methods=['POST', 'GET'])
 def delete_blackcard(index):
-    requests.post('http://blackcards:5001/delete_bc/' + index)
+    requests.post('http://blackcards:5001/delete_bc/' + index.text)
     #blackcards.delete_card(index)
 
     flash ("Black card deleted", 'success')
@@ -95,7 +95,7 @@ def delete_blackcard(index):
 #deletes white card
 @app.route("/delete_wc/<index>", methods=['POST', 'GET'])
 def delete_whitecard(index):
-    requests.post('http://whitecards:5002/delete_wc/' + index)
+    requests.post('http://whitecards:5002/delete_wc/' + index.text)
     #whitecards.delete_card(index)
 
     flash ("White card deleted", 'success')
