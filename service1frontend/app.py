@@ -25,14 +25,16 @@ def index():
 @app.route('/play/<given_word>', methods=['POST', 'GET'])
 def play(given_word):
     form = LetsPlay()
-    num_of_bc = requests.get('http://cah_blackcards-api:5000/get_bc_length')
-    num_of_wc = requests.get('http://cah_whitecards-api:5000/get_wc_length')
+    num_of_bc = requests.get('http://blackcards:5000/get_bc_length')
+    num_of_wc = requests.get('http://whitecards:5000/get_wc_length')
     #num_of_bc = blackcards.length()
     #num_of_wc = whitecards.length()
 
     if given_word == "feeling_lucky_punk":
-        bc = magicmaker.random_number_generator(0, num_of_bc, 1)
-        wc = magicmaker.random_number_generator(0, num_of_wc, 10)
+        bc = requests.get('http://magicmaker:5000/random_number_generator/0/num_of_bc/1')
+        wc = requests.get('http://magicmaker:5000/random_number_generator/0/num_of_wc/10')
+        #bc = magicmaker.random_number_generator(0, num_of_bc, 1)
+        #wc = magicmaker.random_number_generator(0, num_of_wc, 10)
 
         bc_return = blackcards.retrieve_card(bc[0])
         wc_return = []

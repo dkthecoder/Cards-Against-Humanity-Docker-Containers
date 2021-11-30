@@ -1,33 +1,48 @@
 version: "3.8"
 services:
-  #nginx:
-   # container_name: nginx
-    #image: nginx:alpine
-    #ports:
-     # - target: 80
-      #  published: 80
-       # protocol: tcp
-    #volumes:
-     # - type: bind
-      #  source: ./nginx.conf
-       # target: /etc/nginx/nginx.conf
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - target: 80
+        published: 80
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+
   frontend:
     container_name: frontend
     image: service1frontend:latest
     build: ./service1frontend
-    #temp
     ports:
       - target: 5000
         published: 5000
+    restart: on-failure
+
   blackcards:
     container_name: blackcards
     image: service2blackcards:latest
     build: ./service2blackcards
+    ports:
+      - target: 5001
+        published: 5001
+    restart: on-failure
+
   whitecards:
     container_name: whitecards
     image: service3whitecards:latest
     build: ./service3whitecards
+    ports:
+      - target: 5002
+        published: 5002
+    restart: on-failure
+
   magicmaker:
     container_name: magicmaker
     image: service4magicmaker:latest
     build: ./service4magicmaker
+    ports:
+      - target: 5003
+        published: 5003
+    restart: on-failure
