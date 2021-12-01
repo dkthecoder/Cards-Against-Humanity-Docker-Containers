@@ -1,0 +1,17 @@
+---
+# tasks file for swarmmanager
+#
+- name: "Initiate swarm"
+  docker_swarm:
+    state: present
+
+- name: "Get swarm info"
+  docker_swarm_info:
+  register: info
+
+- name: "Deploy app"
+  docker_stack:
+    state: present
+    name: cards_against_humanity
+    compose:
+      - /home/jenkins/docker-compose.yaml
