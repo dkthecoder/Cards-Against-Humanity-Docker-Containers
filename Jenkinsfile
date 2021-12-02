@@ -7,34 +7,29 @@ pipeline {
     }
 
     environment {
-        // TEST_PREFIX = "test-IMAGE"
-        // TEST_IMAGE = "${env.TEST_PREFIX}:${env.BUILD_NUMBER}"
-        // TEST_CONTAINER = "${env.TEST_PREFIX}-${env.BUILD_NUMBER}"
-        // REGISTRY_ADDRESS = "my.registry.address.com"
-
-        // SLACK_CHANNEL = "#deployment-notifications"
-        // SLACK_TEAM_DOMAIN = "MY-SLACK-TEAM"
-        // SLACK_TOKEN = credentials("slack_token")
-        // DEPLOY_URL = "https://deployment.example.com/"
-
-        // COMPOSE_FILE = "docker-compose.yml"
-        // REGISTRY_AUTH = credentials("docker-registry")
-        // STACK_PREFIX = "my-project-stack-name"
+        DOCKER_UNAME = credentials('docker_uname')
+        DOCKER_PWORD = credentials('docker_pword')
     }
 
     stages {
 
-        stage('clone repo') {
+        stage('update/upgrade packages') {
             steps {
-                sh "echo 'clonning repo' "
-                // change dir
-                sh "cd /" 
-                // Clone repo.
-                sh "git clone https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git"
-                sh "echo 'COMPLETED repo clone' "
+                sh "sudo apt update"
+                sh "sudo apt upgrade"
             }
-
         }
+
+        //stage('clone repo') {
+            //steps {
+                //sh "echo 'clonning repo' "
+                // change dir
+                //sh "cd /" 
+                // Clone repo.
+                //sh "git clone https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git"
+                //sh "echo 'COMPLETED repo clone' "
+            //}
+        //}
 
 
         // stage('Run unit tests') {
@@ -56,23 +51,22 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Config and deploy') {
             steps {
-                sh "scp -i ~/.ssh/ansible_id_rsa docker-compose.yaml swarm-master:/home/jenkins/docker-compose.yaml"
-                sh "scp -i ~/.ssh/ansible_id_rsa nginx.conf swarm-master:/home/jenkins/nginx.conf"
-                sh "ansible-playbook -i configuration/inventory.yaml configuration/playbook.yaml"
+                sh "scp docker-compose.yaml jenkins-vm:/home/jenkins/docker-compose.yaml"
+                sh "ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml"
             }
         }
     }
 
-    post {
-        always {
-            junit '**/*.xml'
-            cobertura coberturaReportFile: 'front-end/coverage.xml', failNoReports: false
-            cobertura coberturaReportFile: 'name-api/coverage.xml', failNoReports: false
-            cobertura coberturaReportFile: 'unit-api/coverage.xml', failNoReports: false
-            cobertura coberturaReportFile: 'effect-api/coverage.xml', failNoReports: false
-            sh "docker-compose down || true"
-        }
-    }
+    //post {
+        //always {
+            //junit '**/*.xml'
+            //cobertura coberturaReportFile: 'frontend/coverage.xml', failNoReports: false
+            //cobertura coberturaReportFile: 'blackcards/coverage.xml', failNoReports: false
+            //cobertura coberturaReportFile: 'whitecards/coverage.xml', failNoReports: false
+            //cobertura coberturaReportFile: 'magicmaker/coverage.xml', failNoReports: false
+            //sh "docker-compose down || true"
+        //}
+    //}
 }
