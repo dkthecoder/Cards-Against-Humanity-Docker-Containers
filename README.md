@@ -1,4 +1,4 @@
-# Cards Against Humanity, Docker Deployable Web-app:
+# Cards Against Humanity, Docker Containers:
 Cards Against Humanity (abbreviated as CAH) is a fun, creative commons-licensed card game in which players complete "fill-in-the-blank" statements yusing words or phrases rich are typically, offensive, risqué or politically incorrect.
 
 I aim to take this fun and enriching cardgame and convert it into a python based web-app which utilises Python, SQL, CSS and HTML, and demonstrates my skills and foresight in devops, project management, HCI and containerisation.
