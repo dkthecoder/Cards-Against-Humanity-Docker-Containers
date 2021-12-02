@@ -29,7 +29,8 @@ pipeline {
 
         stage('Config and deploy') {
             steps {
-                sh "scp -r -i StrictHostKeyChecking=no docker-compose.yaml docker-swarm-manager:/home/jenkins/docker-compose.yaml"
+                sh "scp -o StrictHostKeyChecking=no docker-compose.yaml docker-swarm-manager:/home/jenkins/docker-compose.yaml"
+                sh "scp -o StrictHostKeyChecking=no nginx.conf docker-swarm-manager:/home/jenkins/nginx.conf"
                 sh "ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml"
             }
         }
