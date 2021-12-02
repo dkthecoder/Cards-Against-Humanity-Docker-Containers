@@ -29,7 +29,7 @@ pipeline {
 
         stage('Config and deploy') {
             steps {
-                sh "scp docker-compose.yaml 10.154.0.5:/home/jenkins/docker-compose.yaml"
+                sh "scp docker-compose.yaml docker-swarm-manager:/home/jenkins/docker-compose.yaml"
                 sh "ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml"
             }
         }
