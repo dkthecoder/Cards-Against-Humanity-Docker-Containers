@@ -13,13 +13,6 @@ pipeline {
 
     stages {
 
-        stage('update/upgrade packages') {
-            steps {
-                sh "sudo apt update"
-                sh "sudo apt upgrade"
-            }
-        }
-
         //stage('clone repo') {
             //steps {
                 //sh "echo 'clonning repo' "
