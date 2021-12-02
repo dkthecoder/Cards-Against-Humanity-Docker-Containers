@@ -13,18 +13,6 @@ pipeline {
 
     stages {
 
-        //stage('clone repo') {
-            //steps {
-                //sh "echo 'clonning repo' "
-                // change dir
-                //sh "cd /" 
-                // Clone repo.
-                //sh "git clone https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git"
-                //sh "echo 'COMPLETED repo clone' "
-            //}
-        //}
-
-
         // stage('Run unit tests') {
             // steps {
                 // sh "bash test.sh"
@@ -32,11 +20,6 @@ pipeline {
         // }
 
         stage('Build and push images') {
-            environment {
-                DOCKER_USERNAME = credentials('docker_username')
-                DOCKER_PASSWORD = credentials('docker_password')
-            }
-
             steps {
                 sh "docker-compose build --parallel"
                 sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
