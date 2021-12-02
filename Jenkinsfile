@@ -38,9 +38,9 @@ pipeline {
             }
 
             steps {
-                sh "sudo docker-compose build --parallel"
-                sh "sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-                sh "sudo docker-compose push"
+                sh "docker-compose build --parallel"
+                sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+                sh "docker-compose push"
             }
         }
 
