@@ -1,18 +1,17 @@
-# Cards Against Humanity, Flask Based Web-App:
+# Cards Against Humanity, Docker Deployable Web-app:
 Cards Against Humanity (abbreviated as CAH) is a fun, creative commons-licensed card game in which players complete "fill-in-the-blank" statements yusing words or phrases rich are typically, offensive, risqué or politically incorrect.
 
 I aim to take this fun and enriching cardgame and convert it into a python based web-app which utilises Python, SQL, CSS and HTML, and demonstrates my skills and foresight in devops, project management, HCI and containerisation.
 
-This repository is also part of the deliverables for the QA devops project 2. and thus, will aim to split the application across 4, deployable "Docker" containers from a script.
+This repository is also part of the deliverables for the QA devops project 2 and thus, will aim to split the application across 4, deployable "Docker" containers from a script.
 
 ## Contents:
 * [Project Brief](#Project-Brief)  
-* [App Design](#App-Design)
+* [Container Design](#App-Design)
 * [CI Pipeline](#CI-Pipeline)  
 * [Risk Assessment](#Risk-Assessment)
 * [Testing](#Testing)
 * [The App](#The-App)
-* [Updates](#Updates)
 * [Known Issues](#Known-Issues)
 * [Future Work](#Future-Work)
 
@@ -20,9 +19,9 @@ This repository is also part of the deliverables for the QA devops project 2. an
 The brief for this project was to design and produce a web app of my choosing. The app needed to have CRUD (create, read, update and delete) functionality, needed to use the Flask micro-framework, and had to store information in a MySQL database comprised of a minimum of two tables sharing a one-to-many relationship. This structure is represented below:  
 
 INSERT APP STRUCTURE DIAGRAM
-![app structure]()  
+![CONTAINER FRAMEWORK](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/CAH%20framework.png?raw=true)  
 
-## App Design:
+## Deployment Design:
 To demonstrate CRUD, I have chosen to build a list-making application, which allows users to:
 * CREATE an account, lists and items within a list
 * READ account details, lists and items of that list which belong to the user
@@ -68,30 +67,20 @@ INSERT SCREENSHOTS OF THE APPL FUNCTIONING
 # The App:  
 Upon navigating to the app the user is presented with the homepage:  
 
-![home]()  
-The nav bar provides links which allow users to add a question, view questions and take the quiz. To add a question, the user simply fills in the name of the question on the form:  
+![CAH INDEX RULES LETSPLAY](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/screenshots/CAH%20index%20rules%20lets%20play.png?raw=true)  
 
-![add question]()  
-The user is then redirected to a page which allows them to add up to four options for the question. The view questions page displays a list of the questions which have been added so far, which are hyperlinked to allow the user to view, update and delete the associated options:  
+![CAH BLACK WHITE CARDS](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/screenshots/CAH%20black%20white%20cards.png?raw=true)  
 
-![view questions]()  
-Users can also update and delete questions, the app is set up so that deleting a question also removes the associated options.  
 
-## Updates:
-* 12/06/2021:
-    * Background colour changed to a more pleasant dodger blue
-    * __repr__ methods added to Questions and Options classes
-    * Quiz class added
-    * Questions can now be categorised by quiz
-    * Different quizzes can now be taken independently
 
 ## Known Issues:
-* User authentication needs to be enforced for viewing lists. To ensure a user cannot view another users list.
-* Issues with storing DateTime into database causes an error. This issue occurs randomly.
 * No HTTPS, can be enabled given a domain for Certbot and Nginx.
+* Issues with storing DateTime into database causes an error. This issue occurs randomly.
+* Delete functionality is faulty
 * When creating desacription for new list, using grammer may cause SQL errors.
 
 ## Future Work:
-* Custom error pages
-* Better handling of session conditionals (diferent page renders/redirects)
-* Password verification for account deletion
+* Custom error pages.
+* Design for mobile display (for mobile web-app deployment).
+* User accounts to retain custom cards.
+* Modals for confirmation prompts
