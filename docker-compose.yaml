@@ -13,7 +13,7 @@ services:
 
   frontend:
     container_name: frontend
-    image: service1frontend:latest
+    image: captainbigdick/service1frontend:latest
     build: ./service1frontend
     ports:
       - target: 5000
@@ -24,7 +24,7 @@ services:
 
   blackcards:
     container_name: blackcards
-    image: service2blackcards:latest
+    image: captainbigdick/service2blackcards:latest
     build: ./service2blackcards
     ports:
       - target: 5001
@@ -35,7 +35,7 @@ services:
 
   whitecards:
     container_name: whitecards
-    image: service3whitecards:latest
+    image: captainbigdick/service3whitecards:latest
     build: ./service3whitecards
     ports:
       - target: 5002
@@ -46,7 +46,7 @@ services:
 
   magicmaker:
     container_name: magicmaker
-    image: service4magicmaker:latest
+    image: captainbigdick/service4magicmaker:latest
     build: ./service4magicmaker
     ports:
       - target: 5003
