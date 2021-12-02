@@ -38,15 +38,15 @@ pipeline {
             }
 
             steps {
-                sh "docker-compose build --parallel"
-                sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-                sh "docker-compose push"
+                sh "sudo docker-compose build --parallel"
+                sh "sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
+                sh "sudo docker-compose push"
             }
         }
 
         stage('Config and deploy') {
             steps {
-                sh "scp docker-compose.yaml"
+                sh "scp docker-compose.yaml jenkins-vm:/home/jenkins/docker-compose.yaml"
                 sh "ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml"
             }
         }
