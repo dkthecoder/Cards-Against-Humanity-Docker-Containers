@@ -15,6 +15,3 @@
   roles:
   - docker
   - swarm-worker
-
-vars:
-  app_repo: https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git
