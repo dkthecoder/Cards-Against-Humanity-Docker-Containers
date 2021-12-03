@@ -1,20 +1,20 @@
 - hosts: jenkins-vm
-become: true
-roles: 
-- docker
-jenkins
+  become: true
+  roles: 
+  - docker
+    jenkins
 
 - hosts: managers
-become: true
-roles:
-- swarmmanager
-docker
+  become: true
+  roles:
+  - docker
+    swarmmanager
 
 - hosts: workers
-become: true
-roles:
-- swarmworker
-docker
+  become: true
+  roles:
+  - docker
+    swarmworker
 
-vars:
-  app_repo: https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git
+  vars:
+    app_repo: https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git
