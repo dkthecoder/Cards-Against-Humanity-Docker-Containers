@@ -5,5 +5,5 @@
   docker_swarm:
     state: join
     advertise_addr: cards_against_humanity_worker
-    join_token: "{{ hostvars['swarm-master']['info']['swarm_facts']['JoinTokens']['Worker'] }}"
-    remote_addrs: [ 'swarm-master:2377' ]
+    join_token: "{{ hostvars['docker-swarm-manager']['info']['swarm_facts']['JoinTokens']['Worker'] }}"
+    remote_addrs: [ 'docker-swarm-manager:2377' ]
