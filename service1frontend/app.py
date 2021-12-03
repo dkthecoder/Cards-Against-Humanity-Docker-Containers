@@ -120,7 +120,7 @@ def black_cards():
         flash(f'Black card added!', 'success')
         return redirect(url_for('black_cards'))
     
-    cards = request.get('http://blackcards:5001/read_all')
+    cards = requests.get('http://blackcards:5001/read_all')
     #cards = blackcards.read_all()
 
     return render_template("black_cards.html", title="white cards", form=form, black_cards=cards)
@@ -137,8 +137,8 @@ def white_cards():
 
         flash(f'White card added!', 'success')
         return redirect(url_for('white_cards'))
-    
-    cards = request.get('http://whitecards:5002/read_all')
+        
+    cards = requests.get('http://whitecards:5002/read_all')
     #cards = whitecards.read_all()
 
     return render_template("white_cards.html", title="white cards", form=form, white_cards=cards)
