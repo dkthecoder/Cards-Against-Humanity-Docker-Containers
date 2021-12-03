@@ -19,7 +19,7 @@ def get_bc_length():
 
 #read all
 #NEED TO CHECK RETURN OF LIST
-@app.route('/read_all', methods=['GET'])
+@app.route('/read_all', methods=['GET', 'POST'])
 def read_all():
     event_name = df.values.tolist()
     return Response(json.dumps(event_name), mimetype='application/json')
