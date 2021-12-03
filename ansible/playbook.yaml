@@ -4,13 +4,13 @@
   - docker
   jenkins
 
-hosts: managers
+- hosts: managers
   become: true
   roles:
   - docker
   swarmmanager
 
-hosts: workers
+- hosts: workers
   become: true
   roles:
   - docker
