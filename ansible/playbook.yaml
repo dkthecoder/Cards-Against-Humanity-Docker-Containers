@@ -4,17 +4,17 @@
   - docker
   jenkins
 
-- hosts: managers
+hosts: managers
   become: true
   roles:
   - docker
   swarmmanager
 
-- hosts: workers
+hosts: workers
   become: true
   roles:
   - docker
   swarmworker
 
-  vars:
-    app_repo: https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git
+vars:
+  app_repo: https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git
