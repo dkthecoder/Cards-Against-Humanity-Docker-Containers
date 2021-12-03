@@ -2,7 +2,6 @@
   become: true
   roles: 
   - docker
-  - jenkins-vm
 
 - hosts: managers
   become: true
