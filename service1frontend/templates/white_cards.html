@@ -55,7 +55,7 @@
             
             {% for white_card in white_cards %}
             <tr>
-              <td>{{ white_card[0] }}</td>
+              <td>{{ white_card[0][0] }}</td>
               <td class= "text-end"><a type="button" class="btn btn-danger" href="{{ url_for('delete_whitecard', index = loop.index0) }}">Delete</a></td>
             </tr>
             {% endfor %}
