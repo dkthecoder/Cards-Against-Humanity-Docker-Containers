@@ -2,7 +2,7 @@ all:
   children:
     managers:
       hosts:
-        docker-swarm-master:
+        docker-swarm-manager:
       vars:
         ansible_user: root
         ansible_ssh_private_key_file: '~/.ssh/id_rsa'
