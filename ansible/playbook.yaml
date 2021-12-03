@@ -2,19 +2,19 @@
   become: true
   roles: 
   - docker
-  - jenkins
+  jenkins
 
 - hosts: managers
   become: true
   roles:
   - swarmmanager
-  - docker
+  docker
 
 - hosts: workers
   become: true
   roles:
   - swarmworker
-  - docker
+  docker
 
   vars:
     app_repo: https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers.git
