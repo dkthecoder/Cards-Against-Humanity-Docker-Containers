@@ -26,23 +26,26 @@ def read_all():
 
 
 #retrieve a card
-@app.route('/retrieve_wc/<card_id>', methods=['GET', 'POST'])
-def retrieve_wc(card_id):
+@app.route('/retrieve_wc', methods=['GET', 'POST'])
+def retrieve_wc():
+    card_id = request.card_id.decode('utf-8')
     event_name = df.loc[int(card_id)].values.tolist()
     return Response(json.dumps(event_name), mimetype='application/json')
 
 
 #delete card
 #COULD SET TO POST
-@app.route('/delete_wc/<card_id>', methods=['GET', 'POST'])
-def delete_bwc(card_id):
+@app.route('/delete_wc', methods=['GET', 'POST'])
+def delete_wc():
+    card_id = request.card_id.decode('utf-8')
     df.drop(df.index[(df[0] == int(card_id))], axis=0)
 
 
 #add card
 #COULD SET TO POST
-@app.route('/add_wc/<card>', methods=['GET', 'POST'])
-def add_wc(card):
+@app.route('/add_wc', methods=['GET', 'POST'])
+def add_wc():
+    card = request.card.decode('utf-8')
     df.loc[len(df)] = str(card)
 
 

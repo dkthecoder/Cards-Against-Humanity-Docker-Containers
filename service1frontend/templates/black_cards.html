@@ -56,7 +56,7 @@
 
             {% for black_card in black_cards %}
             <tr>
-              <td>{{ black_card[0][0] }}</td>
+              <td>{{ black_card[0] }}</td>
               <td class= "text-end"><a type="button" class="btn btn-danger" href="{{ url_for('delete_blackcard', index = loop.index0) }}">Delete</a></td>
             </tr>
             {% endfor %}
