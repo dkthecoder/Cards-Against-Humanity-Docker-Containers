@@ -55,8 +55,6 @@ def play(given_word):
     elif form.validate_on_submit():
         bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc.text + '", "num":"1", "word": "' + form.word.data.text + '"}')
         wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"1", "word": "' + form.word.data.text + '"}')
-        #bc = magicmaker.rand_numbers_from_word(0, num_of_bc, 1, form.word.data)
-        #wc = magicmaker.rand_numbers_from_word(0, num_of_wc, 10, form.word.data)
 
         bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + bc[0].text + '"}')
 
