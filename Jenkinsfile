@@ -32,6 +32,9 @@ pipeline {
                 sh "scp -o StrictHostKeyChecking=no docker-compose.yaml docker-swarm-manager:/home/jenkins/docker-compose.yaml"
                 sh "scp -o StrictHostKeyChecking=no nginx.conf docker-swarm-manager:/home/jenkins/nginx.conf"
                 sh "ansible-playbook -i ansible/inventory.yaml ansible/playbook.yaml"
+                
+                //Then clean the workspace after deployment ignoring node_modules directory
+                cleanWs notFailBuild: true, patterns: [[pattern: 'node_modules', type: 'EXCLUDE']]
             }
         }
 
