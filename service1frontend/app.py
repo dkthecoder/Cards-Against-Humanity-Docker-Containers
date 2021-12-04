@@ -30,12 +30,8 @@ def play(given_word):
 
 
     if given_word == "feeling_lucky_punk":
-        bc_json = requests.post('http://magicmaker:5003/random_number_generator/', json = {"start":"0", "end":num_of_bc, "num":"1"})
-        #converts from json to regular python dictionary
-        bc = bc_json.json()
-
-        wc_json = requests.post('http://magicmaker:5003/random_number_generator/', json = {"start":"0", "end":num_of_bc, "num":"10"})
-        wc = wc_json.json()
+        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = {"start":"0", "end":num_of_bc, "num":"1"})
+        wc = requests.post('http://magicmaker:5003/random_number_generator/', json = {"start":"0", "end":num_of_bc, "num":"10"})
 
         bc_return = requests.post('http://blackcards:5001/retrieve_bc/', data = str(bc[0]))
         wc_return = []
