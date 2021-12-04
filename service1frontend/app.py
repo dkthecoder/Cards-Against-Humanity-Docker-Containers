@@ -31,9 +31,8 @@ def play(given_word):
 
     if given_word == "feeling_lucky_punk":
         
-        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc + '", "num":"1"}')
-
-        wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc + '", "num":"10"}')
+        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc.text + '", "num":"1"}')
+        wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"10"}')
 
 
         bc_return = requests.post('http://blackcards:5001/retrieve_bc/', data = str(bc[0]))
@@ -53,8 +52,8 @@ def play(given_word):
         return render_template("play.html", title="play", form=form, blackcard=bc_return, whitecards=wc_return)
 
     elif form.validate_on_submit():
-        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = {"start":"0", "end":num_of_bc, "num":"1", "word":form.word.data})
-        wc = requests.post('http://magicmaker:5003/random_number_generator/', json = {"start":"0", "end":num_of_bc, "num":"10", "word":form.word.data})
+        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc.text + '", "num":"1", "word": "' + form.word.data.text + '"}')
+        wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"1", "word": "' + form.word.data.text + '"}')
         #bc = magicmaker.rand_numbers_from_word(0, num_of_bc, 1, form.word.data)
         #wc = magicmaker.rand_numbers_from_word(0, num_of_wc, 10, form.word.data)
 
