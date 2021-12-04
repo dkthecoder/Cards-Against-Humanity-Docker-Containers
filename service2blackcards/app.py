@@ -14,7 +14,7 @@ print("importing black cards COMPLETE")
 @app.route('/get_bc_length', methods=['GET', 'POST'])
 def get_bc_length():
     event_name =  str(len(df) - 1)
-    return jsonify(event_name)
+    return Response(event_name, mimetype='text/plain')
 
 
 #read all
@@ -30,7 +30,7 @@ def read_all():
 def retrieve_bc():
     data = request.json
     event_name = df.loc[int(data["index"])].values.tolist()
-    return jsonify(event_name)
+    return Response(event_name, mimetype='text/plain')
 
 
 #delete card
