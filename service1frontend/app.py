@@ -36,7 +36,7 @@ def play(given_word):
         #gets a set of 10 random number to select white cards
         wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"10"}')
 
-        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + bc[0].text + '"}')
+        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + str(bc[0].text) + '"}')
         
 
         wc_return = []
@@ -45,7 +45,7 @@ def play(given_word):
             temp = []
             for j in range(2):
 
-                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', json = '{"index": "' + wc[counter].text + '"}')
+                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', json = '{"index": "' + str(wc[counter].text) + '"}')
                 temp.append(responce_return)
 
                 counter = counter + 1
