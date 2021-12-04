@@ -1,5 +1,5 @@
 import pandas as pd
-from flask import Flask, request, Response, json
+from flask import Flask, request, Response, jsonify
 
 app = Flask(__name__)
 app.config.update(DEBUG=True)
@@ -14,7 +14,7 @@ print("importing black cards COMPLETE")
 @app.route('/get_bc_length', methods=['GET', 'POST'])
 def get_bc_length():
     event_name =  str(len(df) - 1)
-    return Response(event_name, mimetype='text/plain')
+    return jsonify(event_name)
 
 
 #read all
@@ -22,7 +22,7 @@ def get_bc_length():
 @app.route('/read_all', methods=['GET', 'POST'])
 def read_all():
     event_name = df.values.tolist()
-    return Response(json.dumps(event_name), mimetype='application/json')
+    return jsonify(event_name)
 
 
 #retrieve a card
@@ -30,7 +30,7 @@ def read_all():
 def retrieve_bc():
     card_id = request.data.decode('utf-8')
     event_name = df.loc[int(card_id)].values.tolist()
-    return Response(json.dumps(event_name), mimetype='application/json')
+    return Response(event_name, mimetype='plain/text')
 
 
 #delete card

@@ -37,8 +37,8 @@ def play(given_word):
         wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"10"}')
 
         bc_return = requests.post('http://blackcards:5001/retrieve_bc/', data = str(bc[0].text))
-        wc_return = []
 
+        wc_return = []
         counter = 0
         for i in range(5):
             temp = []
