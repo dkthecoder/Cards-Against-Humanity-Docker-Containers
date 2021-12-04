@@ -11,7 +11,7 @@ print("importing black cards COMPLETE")
 
 
 #Return TRUE length of dataframe
-@app.route('/get_bc_length', methods=['GET'])
+@app.route('/get_bc_length', methods=['GET', 'POST'])
 def get_bc_length():
     event_name =  str(len(df) - 1)
     return Response(event_name, mimetype='text/plain')
@@ -19,7 +19,7 @@ def get_bc_length():
 
 #read all
 #NEED TO CHECK RETURN OF LIST
-@app.route('/read_all', methods=['GET'])
+@app.route('/read_all', methods=['GET', 'POST'])
 def read_all():
     event_name = df.values.tolist()
     return Response(json.dumps(event_name), mimetype='application/json')
@@ -28,7 +28,7 @@ def read_all():
 #retrieve a card
 @app.route('/retrieve_bc', methods=['GET', 'POST'])
 def retrieve_bc():
-    card_id = request.card_id.decode('utf-8')
+    card_id = request.data.decode('utf-8')
     event_name = df.loc[int(card_id)].values.tolist()
     return Response(json.dumps(event_name), mimetype='application/json')
 
@@ -37,7 +37,7 @@ def retrieve_bc():
 #COULD SET TO POST
 @app.route('/delete_bc', methods=['GET', 'POST'])
 def delete_bc():
-    card_id = request.card_id.decode('utf-8')
+    card_id = request.data.decode('utf-8')
     df.drop(df.index[(df[0] == int(card_id))], axis=0)
 
 
@@ -45,7 +45,7 @@ def delete_bc():
 #COULD SET TO POST
 @app.route('/add_bc', methods=['GET', 'POST'])
 def add_bc(card):
-    card = request.card.decode('utf-8')
+    card = request.data.decode('utf-8')
     df.loc[len(df)] = str(card)
 
 
