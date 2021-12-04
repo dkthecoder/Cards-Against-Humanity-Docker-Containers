@@ -1,5 +1,4 @@
-from flask import Flask, render_template, url_for, redirect, flash
-from requests.api import request
+from flask import Flask, render_template, url_for, redirect, flash, json, request
 from forms import AddBlackCard, AddWhiteCard, LetsPlay
 import requests
 
