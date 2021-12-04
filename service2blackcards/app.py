@@ -6,8 +6,7 @@ app.config.update(DEBUG=True)
 
 
 print("importing black cards")
-df_pre = pd.read_csv (r'CAH_Black_Cards.csv', header=None)
-df = df_pre.to_list()
+df = pd.read_csv (r'CAH_Black_Cards.csv', header=None)
 print("importing black cards COMPLETE")
 
 

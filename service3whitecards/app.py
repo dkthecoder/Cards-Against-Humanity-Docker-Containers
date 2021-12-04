@@ -6,8 +6,7 @@ app.config.update(DEBUG=True)
 
 
 print("importing white cards")
-df_pre = pd.read_csv (r'CAH_White_Cards.csv', header=None)
-df = df_pre.to_list()
+df = pd.read_csv (r'CAH_White_Cards.csv', header=None)
 print("importing white card COMPLETE")
 
 
