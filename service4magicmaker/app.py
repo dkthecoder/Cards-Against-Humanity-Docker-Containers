@@ -1,6 +1,6 @@
 import random
 import hashlib
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 
 app = Flask(__name__)
 app.config.update(DEBUG=True)
@@ -17,7 +17,8 @@ def random_number_generator():
     for i in range(data["num"]):
         nums.append(random.randint(data["start"], data["end"]))
     event_name = nums
-    return Response(event_name, mimetype='text/plain')
+    return jsonify(event_name)
+
 
 
 #same as above but uses a word as a seed
@@ -32,7 +33,7 @@ def rand_numbers_from_word():
     for i in range(data["num"]):
         nums.append(random.randint(data["start"], data["end"]))
     event_name = nums
-    return Response(event_name, mimetype='text/plain')
+    return jsonify(event_name)
 
 
 if __name__ == '__main__':
