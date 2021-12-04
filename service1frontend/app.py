@@ -31,11 +31,12 @@ def play(given_word):
 
     if given_word == "feeling_lucky_punk":
         
+        #gets a random number to select black cards
         bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc.text + '", "num":"1"}')
+        #gets a set of 10 random number to select white cards
         wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"10"}')
 
-
-        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', data = str(bc[0]))
+        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', data = str(bc[0].text))
         wc_return = []
 
         counter = 0
@@ -43,7 +44,7 @@ def play(given_word):
             temp = []
             for j in range(2):
 
-                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', data = str(wc[counter]))
+                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', data = str(wc[counter].text))
                 temp.append(responce_return)
                 #temp.append(whitecards.retrieve_card(wc[counter]))
 
