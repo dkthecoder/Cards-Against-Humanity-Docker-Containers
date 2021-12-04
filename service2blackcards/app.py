@@ -28,8 +28,10 @@ def read_all():
 #retrieve a card
 @app.route('/retrieve_bc', methods=['GET', 'POST'])
 def retrieve_bc():
+    data = request.json
+
     card_id = request.data.decode('utf-8')
-    event_name = df.loc[int(card_id)].values.tolist()
+    event_name = df.loc[int(data["index"])].values.tolist()
     return Response(event_name, mimetype='plain/text')
 
 

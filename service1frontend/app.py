@@ -36,7 +36,8 @@ def play(given_word):
         #gets a set of 10 random number to select white cards
         wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"10"}')
 
-        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', data = str(bc[0].text))
+        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + bc[0].text + '"}')
+        
 
         wc_return = []
         counter = 0
@@ -44,9 +45,8 @@ def play(given_word):
             temp = []
             for j in range(2):
 
-                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', data = str(wc[counter].text))
+                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', json = '{"index": "' + wc[counter].text + '"}')
                 temp.append(responce_return)
-                #temp.append(whitecards.retrieve_card(wc[counter]))
 
                 counter = counter + 1
             wc_return.append(temp)
@@ -58,19 +58,16 @@ def play(given_word):
         #bc = magicmaker.rand_numbers_from_word(0, num_of_bc, 1, form.word.data)
         #wc = magicmaker.rand_numbers_from_word(0, num_of_wc, 10, form.word.data)
 
-        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', data = str(wc[0]))
-        #bc_return = blackcards.retrieve_card(bc[0])
-        wc_return = []
+        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + bc[0].text + '"}')
 
+        wc_return = []
         counter = 0
         for i in range(5):
             temp = []
             for j in range(2):
 
-                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', data = str(wc[counter]))
+                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', json = '{"index": "' + wc[counter].text + '"}')
                 temp.append(responce_return)
-                #temp.append(whitecards.retrieve_card(wc[counter]))
-                
 
                 counter = counter + 1
             wc_return.append(temp)
