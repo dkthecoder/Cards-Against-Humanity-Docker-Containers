@@ -47,7 +47,7 @@ def play(given_word):
         for i in range(5):
             temp = []
             for j in range(2):
-                data = {'index':str(wc[counter])}
+                data = {'index':str(wc[counter].text)}
                 temp.append(requests.post('http://whitecards:5002/retrieve_wc/', json = data))
 
                 counter = counter + 1
@@ -73,7 +73,7 @@ def play(given_word):
             temp = []
             for j in range(2):
 
-                data = {'index':str(wc[counter])}
+                data = {'index':str(wc[counter].text)}
                 temp.append(requests.post('http://whitecards:5002/retrieve_wc/', json = data))
 
                 counter = counter + 1
