@@ -31,11 +31,11 @@ def play(given_word):
 
 
     if given_word == "feeling_lucky_punk":
-        bc = requests.get('http://magicmaker:5003/random_number_generator', params = {"start":str(0), "end":str(num_of_bc)})
+        bc = requests.get('http://magicmaker:5003/ran_num_gen', params = {"start":str(0), "end":str(num_of_bc)})
 
         wc = []
         for i in range(10):
-            wc.append(requests.get('http://magicmaker:5003/random_number_generator', params = {"start":str(0), "end":str(num_of_wc)}))
+            wc.append(requests.get('http://magicmaker:5003/ran_num_gen', params = {"start":str(0), "end":str(num_of_wc)}))
 
         data = {"index":bc}
         bc_return = requests.get('http://blackcards:5001/retrieve_bc', params = {"index":str(bc)})
@@ -52,11 +52,11 @@ def play(given_word):
 
 
     elif form.validate_on_submit():
-        bc = requests.post('http://magicmaker:5003/rand_numbers_from_word', params = {"start":str(0), "end":str(num_of_bc), "word":str(form.word.data)})
+        bc = requests.post('http://magicmaker:5003/ran_num_word', params = {"start":str(0), "end":str(num_of_bc), "word":str(form.word.data)})
 
         wc = []
         for i in range(10):
-            wc.append(requests.get('http://magicmaker:5003/rand_numbers_from_word', params = {"start":str(0), "end":str(num_of_wc), "word":str(form.word.data)}))
+            wc.append(requests.get('http://magicmaker:5003/ran_num_word', params = {"start":str(0), "end":str(num_of_wc), "word":str(form.word.data)}))
 
         bc_return = requests.get('http://blackcards:5001/retrieve_bc', params = {"index":str(bc)})
 

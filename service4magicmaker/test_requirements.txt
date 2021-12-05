@@ -1,6 +1,7 @@
 Flask
 pandas
 requests
+responces
 pytest
 pytest-cov
 flask-testing

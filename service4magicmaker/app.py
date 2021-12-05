@@ -9,8 +9,8 @@ app.config.update(DEBUG=True)
 
 #generates random numebrs
 #INPUT: start of range, end of range, number of numbers to generate (default seed)
-@app.route('/random_number_generator', methods=['GET', 'POST'])
-def random_number_generator():
+@app.route('/ran_num_gen', methods=['GET', 'POST'])
+def ran_num_gen():
     start = int(request.args.get('start'))
     end = int(request.args.get('end'))
 
@@ -21,8 +21,8 @@ def random_number_generator():
 
 #same as above but uses a word as a seed
 #INPUT: start of range, end of range, number of numbers to generate, word to generate hash and seed
-@app.route('/rand_numbers_from_word', methods=['GET', 'POST'])
-def rand_numbers_from_word():
+@app.route('/ran_num_word', methods=['GET', 'POST'])
+def ran_num_word():
     start = int(request.args.get('start'))
     end = int(request.args.get('end'))
     word = str(request.args.get('word'))
