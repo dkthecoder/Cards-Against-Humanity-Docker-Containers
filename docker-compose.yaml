@@ -7,6 +7,7 @@ services:
       - target: 80
         published: 80
     volumes:
+      - type: volume
         source: ./nginx.conf
         target: /etc/nginx/nginx.conf
 
