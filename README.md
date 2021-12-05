@@ -5,23 +5,30 @@ This repository is also part of the deliverables for the QA devops project 2 and
 
 ## Contents:
 * [Project Brief](#Project-Brief)  
+* [App Design](#App-Design)
 * [Deployment Design](#Deployment-Design)
 * [CI Pipeline](#CI-Pipeline)  
 * [Risk Assessment](#Risk-Assessment)
 * [Testing](#Testing)
-* [The App](#The-App)
+* [App Screenshots](#App-Screenshots)
 * [Known Issues](#Known-Issues)
 * [Future Work](#Future-Work)
 
 ## Project Brief:  
-The brief for this project was to design and produce a web app of my choosing. The app needed to have CRUD (create, read, update and delete) functionality, needed to use the Flask micro-framework, and had to store information in a MySQL database comprised of a minimum of two tables sharing a one-to-many relationship. This structure is represented below:  
+The brief for this project was to design and produce a web app of my choosing. The app needed to have CRUD (create, read, update and delete) functionality, needed to use the Flask micro-framework, and had to store information in a MySQL database comprised of a minimum of two tables sharing a one-to-many relationship. 
 
-INSERT APP STRUCTURE DIAGRAM
+
+## App Design:  
+To conform with the project requirments, the application needed to have four distinct services. These services operate together as microservices which interact with each other using GET/POST requests/responces. The services used are:
+* service1frontend: operational end shown to the user.
+* service2blackcards: 
+* service3whitecards:
+* service4magicmaker:
+
+This structure is represented below:  
 ![MICROSERVICE FRAMEWORK](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/CAH%20framework.png?raw=true)  
 
 ## Deployment Design:
-
-
 To demonstrate CRUD, I have chosen to build a list-making application, which allows users to:
 * CREATE an account, lists and items within a list
 * READ account details, lists and items of that list which belong to the user
@@ -40,12 +47,16 @@ The goal for future iterations of this project would include additional function
 
 ![KANBAN TIMELINE]()
 
-## Risk Assessment:
-Prior to building the app, a risk assessment was undertaken to identify risks and propose measures to control these risks. These measures could then be implemented in the app. This initial risk assessment is shown below:   
+![JENKINS]()
+Due to constraints with storage, the actual total jenkins builds are not shown in the above figure.
 
-INSERT RISK ASSESSMENT
-![RA]()  
-Some of the control measures implemented in the project as a result of the risk assessment are as follows:  
+Ideally in Jenkins, I would be creating a initial stage of testing application functions first, if passing that, the remaining stages would  run. Even better, would be to have Jenkins pull from the dev-feature branch through development, per each commit made, which runs the tests to assess if the build is operable, then creating a branch merge request, which when accepted by the develope, would merge to the "dev/feature" branch to the main, and triggure another pipeline for deployment.
+
+
+## Risk Assessment:
+Prior to building the app, a risk assessment was undertaken to identify risks and propose measures to control these risks. These measures could then be implemented in the app. Some of the control measures implemented in the project as a result of the risk assessment are as follows:  
+
+![RA](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/risk%20assessment.png?raw=true)  
 
 The likelihood and impact level (out of 5) of each risk identified were estimated before and after the implementation of control measures, to quantify the effect of implementing the measures.
 
@@ -62,9 +73,9 @@ The coverage reports, showing what percentage of statements were included in the
 ![cov]()  
 Showing 96% coverage overall. All tests must pass for a build to be successful, a single failed test marks the build overall as failed.
 
-INSERT SCREENSHOTS OF THE APPL FUNCTIONING
-# The App:  
-Upon navigating to the app the user is presented with the homepage:  
+
+## App Screenshots:  
+Below are screenshots of the app functioning:
 
 ![CAH INDEX RULES LETSPLAY](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/screenshots/CAH%20index%20rules%20lets%20play.png?raw=true)  
 
