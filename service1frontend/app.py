@@ -43,7 +43,7 @@ def play(given_word):
             temp = []
             for j in range(2):
 
-                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', json = '{"index": "' + str(wc[counter].text) + '"}')
+                responce_return = requests.post('http://whitecards:5002/retrieve_wc/', json = '{"index": "' + wc[counter].text + '"}')
                 temp.append(responce_return)
 
                 counter = counter + 1
@@ -113,7 +113,7 @@ def black_cards():
     
     cards = requests.get('http://blackcards:5001/read_all')
 
-    return render_template("black_cards.html", title="white cards", form=form, black_cards=cards)
+    return render_template("black_cards.html", title="white cards", form=form, black_cards=cards.text)
 
 
 #add white card
@@ -128,7 +128,7 @@ def white_cards():
         return redirect(url_for('white_cards'))
         
     cards = requests.get('http://whitecards:5002/read_all')
-    return render_template("white_cards.html", title="white cards", form=form, white_cards=cards)
+    return render_template("white_cards.html", title="white cards", form=form, white_cards=cards.text)
 
 
 if __name__ == '__main__':
