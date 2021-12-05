@@ -30,15 +30,13 @@ def play(given_word):
 
 
     if given_word == "feeling_lucky_punk":
-        
-        #gets a random number to select black cards
-        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc.text + '", "num":"1"}')
-        #gets a set of 10 random number to select white cards
-        wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"10"}')
+        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc.text + '"}')
+        wc = []
+        for i in range(10):
+            wc.append(requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '"}'))
 
-        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + str(bc[0].text) + '"}')
+        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + bc.text + '"}')
         
-
         wc_return = []
         counter = 0
         for i in range(5):
@@ -52,11 +50,14 @@ def play(given_word):
             wc_return.append(temp)
         return render_template("play.html", title="play", form=form, blackcard=bc_return, whitecards=wc_return)
 
-    elif form.validate_on_submit():
-        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc.text + '", "num":"1", "word": "' + form.word.data.text + '"}')
-        wc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "num":"1", "word": "' + form.word.data.text + '"}')
 
-        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + bc[0].text + '"}')
+    elif form.validate_on_submit():
+        bc = requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_bc.text + '", "word": "' + form.word.data.text + '"}')
+        wc = []
+        for i in range(10):
+            wc.append(requests.post('http://magicmaker:5003/random_number_generator/', json = '{"start":"0", "end": "' + num_of_wc.text + '", "word": "' + form.word.data.text + '"}'))
+
+        bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = '{"index": "' + bc.text + '"}')
 
         wc_return = []
         counter = 0
