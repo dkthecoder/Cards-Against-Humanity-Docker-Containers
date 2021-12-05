@@ -53,7 +53,5 @@ services:
         published: 5003
     deploy:
       replicas: 2
-    volumes:
-      - magicmaker-compose/data:/data
     restart: on-failure
     
