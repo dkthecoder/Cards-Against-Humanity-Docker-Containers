@@ -28,6 +28,18 @@ To conform with the project requirments, the application needed to have four dis
 This structure is represented below:  
 ![MICROSERVICE FRAMEWORK](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/CAH%20framework.png?raw=true)  
 
+Service one
+
+Service two
+
+Service three
+
+Service four
+
+As documented i nthe diagram, i have placed nginx as part of the deployment a fifth microservice  is placed prior to the frontend. this is an nginx docker contianer used for reverse proxy measures. Using a reverse proxy helps rpotext the microservice from being snopped or exploited. Allowing for added security benifit to allow only the inteded port to be accessed and used as intended. 
+
+externally reachable endpoint for services along with performance ehancements. A reverse proxy can hide the topology and characteristics of your back-end servers by removing the need for direct internet access to them. You can place your reverse proxy in an internet facing DMZ, but hide your web servers inside a non-public subnet.
+
 ## Deployment Design:
 To demonstrate CRUD, I have chosen to build a list-making application, which allows users to:
 * CREATE an account, lists and items within a list
@@ -41,6 +53,7 @@ The database for this project currently comprises of a "users" table, a "lists" 
 
 The goal for future iterations of this project would include additional functionality to mark items as done, archieve lists, share lists amongst other users (almost like a list social network).
 
+despite the requirments stating the use of a reverse proxy OR a loadbalencer, i personally feel that both could be of benefit (EXPLAIN)!!
 
 ## CI Pipeline:  
 ![KANBAN BACKLOG]()
