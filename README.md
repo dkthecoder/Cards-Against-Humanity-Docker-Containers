@@ -56,9 +56,8 @@ The goal for future iterations of this project would include additional function
 despite the requirments stating the use of a reverse proxy OR a loadbalencer, i personally feel that both could be of benefit (EXPLAIN)!!
 
 ## CI Pipeline:  
-![KANBAN BACKLOG]()
 
-![KANBAN TIMELINE]()
+![JIRA TIMELINE](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/jira%20timeline.png?raw=true)
 
 ![JENKINS](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/jenkins%20stage%20view,%20build%20history.png?raw=true)
 Due to constraints with storage, the actual total jenkins builds are not shown in the above figure.
