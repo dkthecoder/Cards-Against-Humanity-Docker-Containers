@@ -1,13 +1,11 @@
 # Cards Against Humanity, Docker Containers:
-Cards Against Humanity (abbreviated as CAH) is a fun, creative commons-licensed card game in which players complete "fill-in-the-blank" statements yusing words or phrases rich are typically, offensive, risqué or politically incorrect.
-
-I aim to take this fun and enriching cardgame and convert it into a python based web-app which utilises Python, SQL, CSS and HTML, and demonstrates my skills and foresight in devops, project management, HCI and containerisation.
+Cards Against Humanity (abbreviated as CAH) is a fun, creative commons-licensed card game in which players complete "fill-in-the-blank" statements yusing words or phrases rich are typically, offensive, risqué or politically incorrect. I aim to take this fun and enriching cardgame and convert it into a python based web-app which deploys as 4 distinct microservices across containerised mediums.
 
 This repository is also part of the deliverables for the QA devops project 2 and thus, will aim to split the application across 4, deployable "Docker" containers from a script.
 
 ## Contents:
 * [Project Brief](#Project-Brief)  
-* [Container Design](#App-Design)
+* [Deployment Design](#Deployment-Design)
 * [CI Pipeline](#CI-Pipeline)  
 * [Risk Assessment](#Risk-Assessment)
 * [Testing](#Testing)
@@ -19,9 +17,11 @@ This repository is also part of the deliverables for the QA devops project 2 and
 The brief for this project was to design and produce a web app of my choosing. The app needed to have CRUD (create, read, update and delete) functionality, needed to use the Flask micro-framework, and had to store information in a MySQL database comprised of a minimum of two tables sharing a one-to-many relationship. This structure is represented below:  
 
 INSERT APP STRUCTURE DIAGRAM
-![CONTAINER FRAMEWORK](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/CAH%20framework.png?raw=true)  
+![MICROSERVICE FRAMEWORK](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/CAH%20framework.png?raw=true)  
 
 ## Deployment Design:
+
+
 To demonstrate CRUD, I have chosen to build a list-making application, which allows users to:
 * CREATE an account, lists and items within a list
 * READ account details, lists and items of that list which belong to the user
@@ -30,8 +30,7 @@ To demonstrate CRUD, I have chosen to build a list-making application, which all
 
 The database for this project currently comprises of a "users" table, a "lists" table and an "items" table. Where one user can have many lists, and one list can have many items. The ERD for this MVP is shown below:  
 
-INSERT ERD DIAGRAM
-![ERD]()
+![CONTAINER DEPLOYMENT](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/CAH%20cluster%20deploy%20diagram.png?raw=true)
 
 The goal for future iterations of this project would include additional functionality to mark items as done, archieve lists, share lists amongst other users (almost like a list social network).
 
@@ -76,11 +75,12 @@ Upon navigating to the app the user is presented with the homepage:
 ## Known Issues:
 * No HTTPS, can be enabled given a domain for Certbot and Nginx.
 * Issues with storing DateTime into database causes an error. This issue occurs randomly.
-* Delete functionality is faulty
+* Delete functionality is faulty.
 * When creating desacription for new list, using grammer may cause SQL errors.
+* Secrets are passed through "sh" using Groovy String interpolation which is insecure.
 
 ## Future Work:
 * Custom error pages.
 * Design for mobile display (for mobile web-app deployment).
 * User accounts to retain custom cards.
-* Modals for confirmation prompts
+* Modals for confirmation prompts.
