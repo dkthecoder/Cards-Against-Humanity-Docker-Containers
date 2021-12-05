@@ -18,7 +18,7 @@ def random_number_generator():
 
     random.seed()
     event_name = random.randrange(start, end)
-    return jsonify(event_name)
+    return jsonify({"number": event_name})
 
 
 #same as above but uses a word as a seed
@@ -33,7 +33,7 @@ def rand_numbers_from_word():
     hashed = int(hashlib.sha256(word).hexdigest(), base=16)
     random.seed(hashed)
     event_name = random.randrange(start, end)
-    return jsonify(event_name)
+    return jsonify({"number": event_name})
 
 
 if __name__ == '__main__':
