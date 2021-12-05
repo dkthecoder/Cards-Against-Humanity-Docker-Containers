@@ -14,7 +14,7 @@ def random_number_generator():
     data = data_json.json()
 
     random.seed()
-    event_name = random.randint(data["start"], data["end"])
+    event_name = random.randint(int(data["start"]), int(data["end"]))
     return Response(event_name, mimetype='text/plain')
 
 
@@ -27,7 +27,7 @@ def rand_numbers_from_word():
 
     hashed = int(hashlib.sha256(data["word"].encode('UTF-8')).hexdigest(), base=16)
     random.seed(hashed)
-    event_name = random.randint(data["start"], data["end"])
+    event_name = random.randint(int(data["start"]), int(data["end"]))
     return Response(event_name, mimetype='text/plain')
 
 
