@@ -11,7 +11,6 @@ app.config.update(DEBUG=True)
 #INPUT: start of range, end of range, number of numbers to generate (default seed)
 @app.route('/random_number_generator', methods=['GET', 'POST'])
 def random_number_generator():
-
     start = int(request.args.get('start'))
     end = int(request.args.get('end'))
 

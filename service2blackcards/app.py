@@ -30,7 +30,7 @@ def read_all():
 @app.route('/retrieve_bc', methods=['GET', 'POST'])
 def retrieve_bc():
     index = int(request.args.get('index'))
-    str(event_name = df.loc[index].values.tolist())
+    event_name = str(df.loc[index].values.tolist())
     return Response(event_name, mimetype='text/plain')
 
 
