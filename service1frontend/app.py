@@ -33,7 +33,8 @@ def play(given_word):
     if given_word == "feeling_lucky_punk":
         data = {"start":0, "end":num_of_bc}
         bc_temp = requests.post('http://magicmaker:5003/random_number_generator/', json = data)
-        bctemp2 = bc_temp.json()
+
+        bctemp2 = json.loads(bc_temp)
         bc = int(bctemp2["number"])
 
         data = {"start":0, "end":num_of_wc}
