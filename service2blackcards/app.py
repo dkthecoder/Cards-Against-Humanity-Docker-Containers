@@ -29,7 +29,7 @@ def read_all():
 #retrieve a card
 @app.route('/retrieve_bc', methods=['GET', 'POST'])
 def retrieve_bc():
-    data = request.get_json().json
+    data = request.get_json()
     event_name = df.loc[int(data["index"])].values.tolist()
     return Response(event_name, mimetype='text/plain')
 

@@ -31,15 +31,15 @@ def play(given_word):
 
 
     if given_word == "feeling_lucky_punk":
-        data = {'start':0, 'end':str(num_of_bc)}
-        bc = (requests.post('http://magicmaker:5003/random_number_generator/', json = data)).text
+        data = {"start":0, "end":num_of_bc}
+        bc = (requests.post('http://magicmaker:5003/random_number_generator/', json = data)).json().text
 
-        data = {'start':0, 'end':str(num_of_wc)}
+        data = {"start":0, "end":num_of_wc}
         wc = []
         for i in range(10):
-            wc.append(requests.post('http://magicmaker:5003/random_number_generator/', json = data).text)
+            wc.append(requests.post('http://magicmaker:5003/random_number_generator/', json = data).json().text)
 
-        data = {'index':str(bc)}
+        data = {"index":bc}
         bc_return = (requests.post('http://blackcards:5001/retrieve_bc/', json = data)).text
         
         wc_return = []
@@ -47,7 +47,7 @@ def play(given_word):
         for i in range(5):
             temp = []
             for j in range(2):
-                data = {'index':str(wc[counter])}
+                data = {"index":wc[counter]}
                 temp.append(requests.post('http://whitecards:5002/retrieve_wc/', json = data).text)
 
                 counter = counter + 1
@@ -56,15 +56,15 @@ def play(given_word):
 
 
     elif form.validate_on_submit():
-        data = {'start':0, 'end':str(num_of_bc), 'word':str(form.word.data)}
-        bc = (requests.post('http://magicmaker:5003/rand_numbers_from_word', json = data)).text
+        data = {"start":0, "end":num_of_bc, "word":form.word.data}
+        bc = (requests.post('http://magicmaker:5003/rand_numbers_from_word', json = data)).json().text
 
-        data = {'start':0, 'end':str(num_of_wc), 'word':str(form.word.data)}
+        data = {"start":0, "end":num_of_wc, "word":form.word.data}
         wc = []
         for i in range(10):
-            wc.append(requests.post('http://magicmaker:5003/rand_numbers_from_word', json = data).text)
+            wc.append(requests.post('http://magicmaker:5003/rand_numbers_from_word', json = data).json().text)
 
-        data = {'index':str(bc)}
+        data = {"index":bc}
         bc_return = requests.post('http://blackcards:5001/retrieve_bc/', json = data).text
 
         wc_return = []
@@ -73,7 +73,7 @@ def play(given_word):
             temp = []
             for j in range(2):
 
-                data = {'index':str(wc[counter])}
+                data = {"index":wc[counter]}
                 temp.append(requests.post('http://whitecards:5002/retrieve_wc/', json = data).text)
 
                 counter = counter + 1
