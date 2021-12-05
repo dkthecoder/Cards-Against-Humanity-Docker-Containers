@@ -1,5 +1,6 @@
 import pandas as pd
 from flask import Flask, request, Response, jsonify
+import json
 
 app = Flask(__name__)
 app.config.update(DEBUG=True)
@@ -28,7 +29,7 @@ def read_all():
 #retrieve a card
 @app.route('/retrieve_bc', methods=['GET', 'POST'])
 def retrieve_bc():
-    data = request.get_json()
+    data = request.get_json().json
     event_name = df.loc[int(data["index"])].values.tolist()
     return Response(event_name, mimetype='text/plain')
 
