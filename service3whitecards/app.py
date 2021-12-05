@@ -29,8 +29,8 @@ def read_all():
 #retrieve a card
 @app.route('/retrieve_wc', methods=['GET', 'POST'])
 def retrieve_wc():
-    data = request.get_json()
-    event_name = df.loc[int(data["index"])].values.tolist()
+    index = int(request.args.get('index'))
+    event_name = str(df.loc[index].values.tolist())
     return Response(event_name, mimetype='text/plain')
 
 
