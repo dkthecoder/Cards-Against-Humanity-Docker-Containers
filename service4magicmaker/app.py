@@ -10,8 +10,7 @@ app.config.update(DEBUG=True)
 #INPUT: start of range, end of range, number of numbers to generate (default seed)
 @app.route('/random_number_generator', methods=['GET', 'POST'])
 def random_number_generator():
-    data_json = request.get_json()
-    data = data_json.json()
+    data = request.get_json()
 
     random.seed()
     event_name = random.randint(int(data["start"]), int(data["end"]))
@@ -22,8 +21,7 @@ def random_number_generator():
 #INPUT: start of range, end of range, number of numbers to generate, word to generate hash and seed
 @app.route('/rand_numbers_from_word', methods=['GET', 'POST'])
 def rand_numbers_from_word():
-    data_json = request.get_json()
-    data = data_json.json()
+    data = request.get_json()
 
     hashed = int(hashlib.sha256(data["word"].encode('UTF-8')).hexdigest(), base=16)
     random.seed(hashed)
