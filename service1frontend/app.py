@@ -31,7 +31,7 @@ def play(given_word):
 
 
     if given_word == "feeling_lucky_punk":
-        #bc = requests.get('http://magicmaker:5003/random_number_generator', params = {"start":str(0), "end":str(num_of_bc)})
+        bc = requests.get('http://magicmaker:5003/random_number_generator', params = {"start":str(0), "end":str(num_of_bc)})
 
         wc = []
         for i in range(10):
