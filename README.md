@@ -47,7 +47,7 @@ The goal for future iterations of this project would include additional function
 
 ![KANBAN TIMELINE]()
 
-![JENKINS]()
+![JENKINS](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/jenkins%20stage%20view,%20build%20history.png?raw=true)
 Due to constraints with storage, the actual total jenkins builds are not shown in the above figure.
 
 Ideally in Jenkins, I would be creating a initial stage of testing application functions first, if passing that, the remaining stages would  run. Even better, would be to have Jenkins pull from the dev-feature branch through development, per each commit made, which runs the tests to assess if the build is operable, then creating a branch merge request, which when accepted by the develope, would merge to the "dev/feature" branch to the main, and triggure another pipeline for deployment.
