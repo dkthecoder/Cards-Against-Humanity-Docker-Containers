@@ -33,12 +33,11 @@ As documented in the diagram, I have placed nginx as part of the deployment, a f
 The deployment is represented below:  
 ![CONTAINER DEPLOYMENT](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/CAH%20cluster%20deploy%20diagram.png?raw=true)
 
-The database for this project currently comprises of a "users" table, a "lists" table and an "items" table. Where one user can have many lists, and one list can have many items. The ERD for this MVP is shown below:  
+Given the requirements of the project, GitHub would be the intermediary between my local machine and the Jenkins VM which would pull from GitHub and construct the docker containers and deploy the containers to the docker swarm manager. Ansible would then configure the machines as and when needed as a new build was requested.
 
+As illustrated, there are three docker swarm VM's. One manager and two other workers, though, a second worker is optional. each worker (including the manager) would contain duplicates of the microservices for redundancy, ensuring high availability. within each worker, the containers of each microservices communicate within their own local network, which would be accessed via the reverse proxy (as established earlier). when accessed by users, they are not specifically coerced to use a worker or manager hosted services but would connect to whichever is available.
 
-The goal for future iterations of this project would include additional functionality to mark items as done, archieve lists, share lists amongst other users (almost like a list social network).
-
-Despite the requirments stating the use of a reverse proxy OR a loadbalencer, I personally feel that both could be of benefit (EXPLAIN)!!
+Despite the requirements stating the use of a reverse proxy OR a load balancer, I personally feel that both could be of benefit, not only having the added layer of security from the reverse proxy, but the means to balance the distribution of users across swarms rather than allowing this to randomly occur by itself.
 
 ## CI Pipeline:  
 For managing the projects development, I had chosen to use Jira for mapping out the required tasks to be completed, and to organise each task into sprints over a given time horizon. Below is a screen capture of how the sprints looked over a timeline, showing the overall, estimated completion of tasks and their respective sprints.
