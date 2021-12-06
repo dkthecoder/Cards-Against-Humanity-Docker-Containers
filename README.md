@@ -36,9 +36,9 @@ Service three
 
 Service four
 
-As documented i nthe diagram, i have placed nginx as part of the deployment a fifth microservice  is placed prior to the frontend. this is an nginx docker contianer used for reverse proxy measures. Using a reverse proxy helps rpotext the microservice from being snopped or exploited. Allowing for added security benifit to allow only the inteded port to be accessed and used as intended. 
+As documented I nthe diagram, I have placed nginx as part of the deployment a fifth microservice is placed prior to the frontend. this is an nginx docker contianer used for reverse proxy measures. Using a reverse proxy helps rpotext the microservice from being snopped or exploited. Allowing for added security benifit to allow only the inteded port to be accessed and used as intended. 
 
-externally reachable endpoint for services along with performance ehancements. A reverse proxy can hide the topology and characteristics of your back-end servers by removing the need for direct internet access to them. You can place your reverse proxy in an internet facing DMZ, but hide your web servers inside a non-public subnet.
+Externally reachable endpoint for services along with performance ehancements. A reverse proxy can hide the topology and characteristics of your back-end servers by removing the need for direct internet access to them. You can place your reverse proxy in an internet facing DMZ, but hide your web servers inside a non-public subnet.
 
 ## Deployment Design:
 To demonstrate CRUD, I have chosen to build a list-making application, which allows users to:
@@ -53,7 +53,7 @@ The database for this project currently comprises of a "users" table, a "lists" 
 
 The goal for future iterations of this project would include additional functionality to mark items as done, archieve lists, share lists amongst other users (almost like a list social network).
 
-despite the requirments stating the use of a reverse proxy OR a loadbalencer, i personally feel that both could be of benefit (EXPLAIN)!!
+Despite the requirments stating the use of a reverse proxy OR a loadbalencer, I personally feel that both could be of benefit (EXPLAIN)!!
 
 ## CI Pipeline:  
 
@@ -62,7 +62,7 @@ despite the requirments stating the use of a reverse proxy OR a loadbalencer, i 
 ![JENKINS](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/jenkins%20stage%20view,%20build%20history.png?raw=true)
 Due to constraints with storage, the actual total jenkins builds are not shown in the above figure.
 
-Ideally in Jenkins, I would be creating a initial stage of testing application functions first, if passing that, the remaining stages would  run. Even better, would be to have Jenkins pull from the dev-feature branch through development, per each commit made, which runs the tests to assess if the build is operable, then creating a branch merge request, which when accepted by the develope, would merge to the "dev/feature" branch to the main, and triggure another pipeline for deployment.
+Ideally in Jenkins, I would be creating a initial stage of testing application functions first, if passing that, the remaining stages would run. Even better, would be to have Jenkins pull from the dev-feature branch through development, per each commit made, which runs the tests to assess if the build is operable, then creating a branch merge request, which when accepted by the develope, would merge to the "dev/feature" branch to the main, and triggure another pipeline for deployment.
 
 
 ## Risk Assessment:
@@ -79,10 +79,7 @@ Testing the app was an essential part of the development process. Two types of t
 
 As this is not a production app, tests such as security tests and performance tests were not part of the scope of this project; only testing for functionality was performed. As mentioned previously, these tests are automated using Jenkins via webhooks. A successful build, in which all tests passed, is shown below:  
 
-![build]()  
-The coverage reports, showing what percentage of statements were included in the tests, were output as html files, which were archived post-build. The coverage report for the above build was:  
-
-![cov]()  
+![cov](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/coverage.png?raw=true)  
 Showing 96% coverage overall. All tests must pass for a build to be successful, a single failed test marks the build overall as failed.
 
 
@@ -90,9 +87,7 @@ Showing 96% coverage overall. All tests must pass for a build to be successful, 
 Below are screenshots of the app functioning:
 
 ![CAH INDEX RULES LETSPLAY](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/screenshots/CAH%20index%20rules%20lets%20play.png?raw=true)  
-
 ![CAH BLACK WHITE CARDS](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/screenshots/CAH%20black%20white%20cards.png?raw=true)  
-
 
 
 ## Known Issues:
