@@ -36,20 +36,22 @@ The deployment is represented below:
 The database for this project currently comprises of a "users" table, a "lists" table and an "items" table. Where one user can have many lists, and one list can have many items. The ERD for this MVP is shown below:  
 
 
-
 The goal for future iterations of this project would include additional functionality to mark items as done, archieve lists, share lists amongst other users (almost like a list social network).
 
 Despite the requirments stating the use of a reverse proxy OR a loadbalencer, I personally feel that both could be of benefit (EXPLAIN)!!
 
 ## CI Pipeline:  
+For managing the projects development, I had chosen to use Jira for mapping out the required tasks to be completed, and to organise each task into sprints over a given time horizon. Below is a screen capture of how the sprints looked over a timeline, showing the overall, estimated completion of tasks and their respective sprints.
 
 ![JIRA TIMELINE](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/jira%20timeline.png?raw=true)
 
+In order to meet the requirments of the project, Jenkings was utilised to operate a Continuous Development/Continuous Deployment pipeline. Orchestrating the git repo pull, construction of docker containers and orchestration of the docker swarm manager/worker on their respective VMs. Below is a screen capture of the Jenkins build timeline through project development, as well as the associated pipeline:
+
 ![JENKINS](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/jenkins%20stage%20view,%20build%20history.png?raw=true)
-Due to constraints with storage, the actual total jenkins builds are not shown in the above figure.
 
-Ideally in Jenkins, I would be creating a initial stage of testing application functions first, if passing that, the remaining stages would run. Even better, would be to have Jenkins pull from the dev-feature branch through development, per each commit made, which runs the tests to assess if the build is operable, then creating a branch merge request, which when accepted by the develope, would merge to the "dev/feature" branch to the main, and triggure another pipeline for deployment.
+Due to constraints with storage, the actual total jenkins builds are not shown in the above figure but are greater than the current number suggests. To save on storage, most older builds were deleted.
 
+Ideally in Jenkins, prior to building the docker containers, I would have an initial testing stage in order to assure the functionality of the app worked. Only if passing that, the remaining stages would run. Even better, I'd have created a separate repository branch just for Jenkins to pull from when a commit was made and run specific tests to assert functionality. If the tests would pass, a branch-merge request to a dev or main branch. Which when accepted, would trigger another pipeline for deployment.
 
 ## Risk Assessment:
 Prior to building the app, a risk assessment was undertaken to identify risks and propose measures to control these risks. These measures could then be implemented in the app. Some of the control measures implemented in the project as a result of the risk assessment are as follows:  
@@ -59,22 +61,19 @@ Prior to building the app, a risk assessment was undertaken to identify risks an
 The likelihood and impact level (out of 5) of each risk identified were estimated before and after the implementation of control measures, to quantify the effect of implementing the measures.
 
 ## Testing:  
-Testing the app was an essential part of the development process. Two types of testing were implemented:  
-* Unit testing tests _units of functionality_ (i.e functions) within the app. Unit tests were written for create, read, update and delete functionality, to ensure that these worked as intended.
-* Integration testing tests the function of the app in an as-live environment, being able to simulate keyboard input and mouse clicks to ensure that these elements of the app function as intended. Integration tests were written for many of the forms employed in the app.  
+Testing the app was an essential part of the development process. However, I had only chosen to pursue one type of testing: Unit tests. This type of testing tests the functional elements of the each microservice through inputting information and assessing its output over predetermined results, to determine if the function does what it intends to do. Below is the coverage report for each microservice:
+
+![cov](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/coverage.png?raw=true) 
+
+The average coverage is sub-par and is mainly affected for the lack of testing implemented. Mainly, I missed out "mocking" the connection to test the function with. Resulting in disappointing coverage and a low-test result. Further to this, I had decided to perform tests outside of the pipeline, which is not ideal and should really be part of the deployment pipeline to catch bugs.
 
 As this is not a production app, tests such as security tests and performance tests were not part of the scope of this project; only testing for functionality was performed. As mentioned previously, these tests are automated using Jenkins via webhooks. A successful build, in which all tests passed, is shown below:  
-
-![cov](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/coverage.png?raw=true)  
-Showing 96% coverage overall. All tests must pass for a build to be successful, a single failed test marks the build overall as failed.
-
 
 ## App Screenshots:  
 Below are screenshots of the app functioning:
 
 ![CAH INDEX RULES LETSPLAY](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/screenshots/CAH%20index%20rules%20lets%20play.png?raw=true)  
 ![CAH BLACK WHITE CARDS](https://github.com/dkthecoder/Cards-Against-Humanity-Docker-Containers/blob/main/figures/screenshots/CAH%20black%20white%20cards.png?raw=true)  
-
 
 ## Known Issues:
 * No HTTPS, can be enabled given a domain for Certbot and Nginx.
