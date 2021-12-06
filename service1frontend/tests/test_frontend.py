@@ -1,9 +1,8 @@
-import requests_mock
-import pytest
-import unittest
+from app import app
 from flask import url_for
-from service1frontend import app
 from flask_testing import TestCase
+import pytest
+
 
 class TestBase(TestCase):
     def create_app(self):
