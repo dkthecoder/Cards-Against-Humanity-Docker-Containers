@@ -38,16 +38,17 @@ def retrieve_wc():
 #COULD SET TO POST
 @app.route('/delete_wc', methods=['GET', 'POST'])
 def delete_wc():
-    card_id = request.data.decode('utf-8')
-    df.drop(df.index[(df[0] == int(card_id))], axis=0)
+    index = int(request.args.get('index'))
+    df.drop(df.index[(df[0] == index)], axis=0)
 
 
 #add card
 #COULD SET TO POST
 @app.route('/add_wc', methods=['GET', 'POST'])
 def add_wc():
-    card = request.data.decode('utf-8')
+    card = str(request.args.get('card'))
     df.loc[len(df)] = str(card)
+    return.response(200)
 
 
 if __name__ == '__main__':

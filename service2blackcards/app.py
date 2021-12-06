@@ -38,14 +38,14 @@ def retrieve_bc():
 #COULD SET TO POST
 @app.route('/delete_bc', methods=['GET', 'POST'])
 def delete_bc():
-    card_id = request.data.decode('utf-8')
-    df.drop(df.index[(df[0] == int(card_id))], axis=0)
+    index = int(request.args.get('index'))
+    df.drop(df.index[(df[0] == index)], axis=0)
 
 
 #add card
 #COULD SET TO POST
 @app.route('/add_bc', methods=['GET', 'POST'])
-def add_bc(card):
+def add_bc():
     card = request.data.decode('utf-8')
     df.loc[len(df)] = str(card)
 
